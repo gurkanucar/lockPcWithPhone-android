@@ -1,5 +1,7 @@
 package com.gucarsoft.lockpcwithphone.service;
 
+import android.util.Log;
+
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -15,9 +17,10 @@ public class SocketService {
                     pr.println(message);
                     pr.flush();
                     s.close();
-
+                    Log.d("OK","yollandı");
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Log.d("ERROR","hata oldu");
                 }
             }
         }).start();

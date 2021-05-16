@@ -1,6 +1,8 @@
 package com.gucarsoft.lockpcwithphone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.net.DhcpInfo;
@@ -9,11 +11,16 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gucarsoft.lockpcwithphone.database.AppDatabase;
+import com.gucarsoft.lockpcwithphone.fragment.Fragment1;
+import com.gucarsoft.lockpcwithphone.fragment.Fragment2;
+import com.gucarsoft.lockpcwithphone.fragment.Fragment3;
 import com.gucarsoft.lockpcwithphone.model.Profile;
 import com.gucarsoft.lockpcwithphone.service.ProfileService;
 import com.gucarsoft.lockpcwithphone.service.SocketService;
@@ -31,8 +38,7 @@ import java.util.logging.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView ipAddressTextView;
-    Button connectToSocketButton;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,35 +48,43 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-
-        ipAddressTextView = findViewById(R.id.ipAddress);
-        connectToSocketButton = findViewById(R.id.connectToSocket);
-
-        ipAddressTextView.setText("selam");
-
-
+        /*
         AppDatabase appDatabase = AppDatabase.getAppDatabase(getApplicationContext());
         ProfileService profileService = new ProfileService(appDatabase);
 
+            Profile profile=new Profile();
+            profile.setIpAddress("192.168.0.21");
+            profile.setPortAddress("4999");
+            profile.setProfileName("home");
+            profileService.create(profile);
+
+
         for (Profile profile : profileService.getAll()) {
             System.out.println(profile.toString());
-        }
+        }*/
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new Fragment1()).commit();
 
-
-        connectToSocketButton.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment = null;
 
+                switch (item.getItemId()) {
+                    case R.id.item1:
+                        fragment = new Fragment1();
+                        break;
+                    case R.id.item2:
+                        fragment = new Fragment2();
+                        break;
+                    case R.id.item3:
+                        fragment = new Fragment3();
+                        break;
+                }
 
-              /*  Profile profile=new Profile();
-                    profile.setIpAddress("192.168.0.21");
-                    profile.setPortAddress("4999");
-                    profile.setProfileName("home");
-                    profileService.create(profile);
-*/
-                SocketService.sendMessage("deneme","192.168.0.23","4999");
-
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+                return true;
             }
         });
 
