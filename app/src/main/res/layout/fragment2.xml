@@ -1,11 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-<TextView
-    android:layout_width="wrap_content"
-    android:textSize="50sp"
-    android:text="Fragment 2"
-    android:layout_height="wrap_content"></TextView>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/cameraBtn"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:background="@drawable/camera_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="For showing qr code => Desktop App > Right Click > Config"
+                android:textSize="25sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/createProfileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/app_font"
+                android:hint="Profile Name"
+                android:maxLines="1"
+                android:textSize="28sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/createProfileAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/app_font"
+                android:hint="IP Address"
+                android:maxLines="1"
+                android:textSize="28sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/createProfilePort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/app_font"
+                android:hint="Port"
+                android:maxLines="1"
+                android:textSize="28sp" />
+
+
+            <ImageView
+                android:id="@+id/createSaveBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+
+                android:background="@drawable/save_icon" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </RelativeLayout>

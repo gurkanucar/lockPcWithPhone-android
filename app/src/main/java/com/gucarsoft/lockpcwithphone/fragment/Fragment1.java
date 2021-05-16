@@ -33,8 +33,6 @@ import java.util.List;
 public class Fragment1 extends Fragment {
 
 
-    TextView ipAddressTextView;
-    Button connectToSocketButton;
     static ProfileRCViewAdapter adapter;
     static List<Profile> profileList;
 
