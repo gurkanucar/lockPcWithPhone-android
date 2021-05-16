@@ -21,9 +21,8 @@ public class Profile implements Serializable {
     @ColumnInfo(name = "port_address")
     private String portAddress;
 
-    public int getId() {
-        return id;
-    }
+    @ColumnInfo(name = "selected")
+    private Boolean selected;
 
     @Override
     public String toString() {
@@ -33,6 +32,11 @@ public class Profile implements Serializable {
                 ", ipAddress='" + ipAddress + '\'' +
                 ", portAddress='" + portAddress + '\'' +
                 '}';
+    }
+
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
@@ -61,5 +65,13 @@ public class Profile implements Serializable {
 
     public void setPortAddress(String portAddress) {
         this.portAddress = portAddress;
+    }
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
     }
 }
