@@ -13,6 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.gucarsoft.lockpcwithphone.database.AppDatabase;
+import com.gucarsoft.lockpcwithphone.model.Profile;
+import com.gucarsoft.lockpcwithphone.service.ProfileService;
+import com.gucarsoft.lockpcwithphone.service.SocketService;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,38 +40,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
         StrictMode.setThreadPolicy(policy);
+
 
         ipAddressTextView = findViewById(R.id.ipAddress);
         connectToSocketButton = findViewById(R.id.connectToSocket);
 
         ipAddressTextView.setText("selam");
 
+
+        AppDatabase appDatabase = AppDatabase.getAppDatabase(getApplicationContext());
+        ProfileService profileService = new ProfileService(appDatabase);
+
+        for (Profile profile : profileService.getAll()) {
+            System.out.println(profile.toString());
+        }
+
+
+
         connectToSocketButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                          Socket s = new Socket("192.168.0.21", 4999);
-                            PrintWriter pr = new PrintWriter(s.getOutputStream());
-                            pr.println("test");
-                            pr.flush();
-                            s.close();
 
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                // do onPostExecute stuff
-                            }
-                        });
-                    }
-                }).start();
+              /*  Profile profile=new Profile();
+                    profile.setIpAddress("192.168.0.21");
+                    profile.setPortAddress("4999");
+                    profile.setProfileName("home");
+                    profileService.create(profile);
+*/
+                SocketService.sendMessage("deneme","192.168.0.23","4999");
 
             }
         });
