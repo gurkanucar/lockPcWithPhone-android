@@ -18,6 +18,12 @@ public class ProfileService {
         return data;
     }
 
+    public Profile update(Profile data) {
+        db.profileDao().update(data);
+        data=findById(data.getId());
+        return data;
+    }
+
     public  Profile delete(Profile data) {
         db.profileDao().delete(data);
         return data;

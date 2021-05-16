@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:id="@+id/updateDeleteBtn"
+                    android:layout_height="40dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/delete_icon" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/updateSaveBtn"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/save_icon" />
+
+
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:id="@+id/updateCancelBtn"
+                    android:layout_height="40dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/cancel_icon" />
+
+            </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editDialogProfileName"
+            android:maxLines="1"
+            android:layout_margin="20dp"
+            android:hint="Profile Name"
+            android:textSize="28sp"
+            android:fontFamily="@font/app_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputEditText>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editDialogProfileAddress"
+            android:maxLines="1"
+            android:layout_margin="20dp"
+            android:hint="IP Address"
+            android:textSize="28sp"
+            android:fontFamily="@font/app_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputEditText>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editDialogProfilePort"
+            android:maxLines="1"
+            android:layout_margin="20dp"
+            android:hint="Port"
+            android:textSize="28sp"
+            android:fontFamily="@font/app_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </LinearLayout>
+</RelativeLayout>

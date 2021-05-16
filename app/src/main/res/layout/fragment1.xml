@@ -2,30 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:gravity="center"
     android:layout_width="match_parent" android:layout_height="match_parent">
+
     <LinearLayout
         android:gravity="center"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/ipAddress"
-            android:text="ipAddress"
-            android:textAlignment="center"
-            android:textSize="45sp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RCViewProfile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </TextView>
-
-        <Button
-            android:id="@+id/connectToSocket"
-            android:text="Connect to the socket"
-            android:textAllCaps="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </Button>
-
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 
