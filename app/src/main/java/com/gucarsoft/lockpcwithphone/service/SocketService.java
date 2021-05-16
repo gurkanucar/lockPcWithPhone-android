@@ -20,7 +20,7 @@ public class SocketService {
                         pr.println(message);
                         pr.flush();
                         s.close();
-                        Log.d("OK","yollandı");
+                        Log.d("OK","yollandı: "+message);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

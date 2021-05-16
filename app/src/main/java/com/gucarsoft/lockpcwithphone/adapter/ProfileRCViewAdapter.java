@@ -3,6 +3,8 @@ package com.gucarsoft.lockpcwithphone.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ import com.gucarsoft.lockpcwithphone.service.SocketService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ProfileRCViewAdapter extends RecyclerView.Adapter<ProfileRCViewAdapter.ViewHolder> {
 
@@ -50,8 +53,6 @@ public class ProfileRCViewAdapter extends RecyclerView.Adapter<ProfileRCViewAdap
     }
 
 
-
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Profile profile = profiles.get(position);
@@ -63,6 +64,55 @@ public class ProfileRCViewAdapter extends RecyclerView.Adapter<ProfileRCViewAdap
                 SocketService.sendMessage(Constants.POWEROFF, profile.getIpAddress(), profile.getPortAddress());
             }
         });
+
+        holder.lockBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SocketService.sendMessage(Constants.LOCK, profile.getIpAddress(), profile.getPortAddress());
+            }
+        });
+
+        holder.messageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LayoutInflater inflater = ((AppCompatActivity) context).getLayoutInflater();
+                View dialog = inflater.inflate(R.layout.send_message_dialog, null);
+                AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                alertDialog.setCancelable(true);
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                ImageView sendMessageButton = dialog.findViewById(R.id.sendMessageSendBtn);
+                ImageView sendMessageCancelButton = dialog.findViewById(R.id.sendMessageCloseBtn);
+                TextInputEditText sendMessageMessage = dialog.findViewById(R.id.sendMessageTextInput);
+                alertDialog.setView(dialog);
+
+                sendMessageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!TextUtils.isEmpty(sendMessageMessage.getText().toString())) {
+                            if (sendMessageMessage.getText().toString().contains("http")) {
+                                SocketService.sendMessage(Constants.OPENLINK + sendMessageMessage.getText().toString(), profile.getIpAddress(), profile.getPortAddress());
+
+                            } else {
+                                SocketService.sendMessage(Constants.SHOWMESSAGE + sendMessageMessage.getText().toString(), profile.getIpAddress(), profile.getPortAddress());
+
+                            }
+                            sendMessageMessage.setText("");
+                        }
+                    }
+                });
+
+                sendMessageCancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+                alertDialog.show();
+            }
+        });
+
 
         holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +149,7 @@ public class ProfileRCViewAdapter extends RecyclerView.Adapter<ProfileRCViewAdap
                         ProfileService profileService = new ProfileService(appDatabase);
                         profileService.update(temp);
                         Fragment1.refresh(context);
-                        Toast.makeText(context,"Kaydedildi",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Kaydedildi", Toast.LENGTH_SHORT).show();
                         alertDialog.cancel();
 
                     }
@@ -108,7 +158,7 @@ public class ProfileRCViewAdapter extends RecyclerView.Adapter<ProfileRCViewAdap
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context,"Silindi",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Silindi", Toast.LENGTH_SHORT).show();
                         AppDatabase appDatabase = AppDatabase.getAppDatabase(context);
                         ProfileService profileService = new ProfileService(appDatabase);
                         profileService.delete(selected);
@@ -145,6 +195,7 @@ public class ProfileRCViewAdapter extends RecyclerView.Adapter<ProfileRCViewAdap
         ImageButton editBtn;
         ImageButton messageBtn;
         ImageButton powerOffBtn;
+        ImageButton lockBtn;
         ImageButton pinBtn;
 
         public ViewHolder(@NonNull View itemView) {
@@ -155,6 +206,7 @@ public class ProfileRCViewAdapter extends RecyclerView.Adapter<ProfileRCViewAdap
             editBtn = itemView.findViewById(R.id.profileItemEditBtn);
             messageBtn = itemView.findViewById(R.id.profileItemMessageBtn);
             powerOffBtn = itemView.findViewById(R.id.profileItemCloseBtn);
+            lockBtn = itemView.findViewById(R.id.profileItemLockBtn);
             pinBtn = itemView.findViewById(R.id.profileItemPinBtn);
             itemView.setOnClickListener(this);
         }

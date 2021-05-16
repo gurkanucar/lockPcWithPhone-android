@@ -6,6 +6,8 @@ public class Constants {
     public static final String POWEROFF ="cli#poweroff";
     public static final String SLEEP ="cli#sleep";
     public static final String SHOWMESSAGE ="cli#showmessage#";
-    public static final boolean CAN_SEND_MESSAGE =false;
+    public static final String OPENLINK ="cli#link#";
+    public static final String EXIT ="cli#exit#";
+    public static final boolean CAN_SEND_MESSAGE =true;
 
 }
