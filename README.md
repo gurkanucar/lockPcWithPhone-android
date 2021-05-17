@@ -1,5 +1,15 @@
 # Lock PC With Phone
 
+## Features
+
+- ✅ Add profile your different networks
+- ✅ Lock, sleep of power off your computer from phone
+- ✅ Send weblink, it will automatically open
+- ✅ Send Clipboard data to your computer
+- ✅ Send info message like a notification
+- ☐ Receive data from computer
+- ☐ Simulate key press
+
 
  ## 1. Add a new profile
 
