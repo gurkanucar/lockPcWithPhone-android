@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -84,18 +85,24 @@ public class ProfileRCViewAdapter extends RecyclerView.Adapter<ProfileRCViewAdap
                 ImageView sendMessageButton = dialog.findViewById(R.id.sendMessageSendBtn);
                 ImageView sendMessageCancelButton = dialog.findViewById(R.id.sendMessageCloseBtn);
                 TextInputEditText sendMessageMessage = dialog.findViewById(R.id.sendMessageTextInput);
+                CheckBox sendMessageAsAClipboard = dialog.findViewById(R.id.sendMessageAsAClipboardData);
                 alertDialog.setView(dialog);
 
                 sendMessageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (!TextUtils.isEmpty(sendMessageMessage.getText().toString())) {
-                            if (sendMessageMessage.getText().toString().contains("http")) {
-                                SocketService.sendMessage(Constants.OPENLINK + sendMessageMessage.getText().toString(), profile.getIpAddress(), profile.getPortAddress());
+                            if (sendMessageAsAClipboard.isChecked()) {
+                                SocketService.sendMessage(Constants.CLIPBOARD + sendMessageMessage.getText().toString(), profile.getIpAddress(), profile.getPortAddress());
 
                             } else {
-                                SocketService.sendMessage(Constants.SHOWMESSAGE + sendMessageMessage.getText().toString(), profile.getIpAddress(), profile.getPortAddress());
+                                if (sendMessageMessage.getText().toString().contains("http")) {
+                                    SocketService.sendMessage(Constants.OPENLINK + sendMessageMessage.getText().toString(), profile.getIpAddress(), profile.getPortAddress());
 
+                                } else {
+                                    SocketService.sendMessage(Constants.SHOWMESSAGE + sendMessageMessage.getText().toString(), profile.getIpAddress(), profile.getPortAddress());
+
+                                }
                             }
                             sendMessageMessage.setText("");
                         }

@@ -83,10 +83,13 @@ public class Fragment2 extends Fragment {
 
     public void scanCode() {
         IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
-        intentIntegrator.setBeepEnabled(false);
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+        intentIntegrator.setPrompt("Scan a qr code");
+        intentIntegrator.setCameraId(0);  // Use a specific camera of the device
         intentIntegrator.setOrientationLocked(true);
+        intentIntegrator.setBeepEnabled(true);
         intentIntegrator.setCaptureActivity(Capture.class);
+       // intentIntegrator.initiateScan();
         IntentIntegrator.forSupportFragment(Fragment2.this).initiateScan();
     }
 

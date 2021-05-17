@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="40dp"
                     android:id="@+id/updateDeleteBtn"
                     android:layout_height="40dp"
@@ -35,6 +36,7 @@
                     android:layout_weight="1"/>
 
                 <ImageView
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:id="@+id/updateSaveBtn"
@@ -45,6 +47,7 @@
 
 
                 <ImageView
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="40dp"
                     android:id="@+id/updateCancelBtn"
                     android:layout_height="40dp"

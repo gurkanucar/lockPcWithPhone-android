@@ -39,6 +39,7 @@
                    android:layout_weight="1"/>
 
                <ImageButton
+                   android:foreground="?android:attr/selectableItemBackground"
                    android:id="@+id/profileItemEditBtn"
                    android:background="@drawable/edit_icon"
                    android:layout_margin="20dp"
@@ -46,6 +47,7 @@
                    android:layout_height="35dp" />
 
                <ImageButton
+                   android:foreground="?android:attr/selectableItemBackground"
                    android:id="@+id/profileItemPinBtn"
                    android:background="@drawable/pin_icon_white"
                    android:layout_margin="23dp"
@@ -82,6 +84,7 @@
                    android:layout_width="wrap_content"/>
 
                <ImageButton
+                   android:foreground="?android:attr/selectableItemBackground"
                    android:id="@+id/profileItemLockBtn"
                    android:background="@drawable/lock_icon"
                    android:layout_margin="20dp"
@@ -94,6 +97,7 @@
 
 
                <ImageButton
+                   android:foreground="?android:attr/selectableItemBackground"
                    android:id="@+id/profileItemCloseBtn"
                    android:background="@drawable/power_icon"
                    android:layout_margin="20dp"
@@ -105,6 +109,7 @@
                    android:layout_width="wrap_content"/>
 
                <ImageButton
+                   android:foreground="?android:attr/selectableItemBackground"
                    android:id="@+id/profileItemMessageBtn"
                    android:background="@drawable/message_icon"
                    android:layout_margin="20dp"

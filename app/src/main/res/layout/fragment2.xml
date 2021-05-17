@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/cameraBtn"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
@@ -67,7 +68,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-
+                android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/save_icon" />
 
         </LinearLayout>
