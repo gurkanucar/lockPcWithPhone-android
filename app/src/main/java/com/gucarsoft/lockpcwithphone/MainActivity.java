@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.item2:
                         fragment = new Fragment2();
                         break;
-                    case R.id.item3:
+                  /*  case R.id.item3:
                         fragment = new Fragment3();
-                        break;
+                        break;*/
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
